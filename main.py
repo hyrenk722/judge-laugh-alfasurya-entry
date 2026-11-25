@@ -12,7 +12,7 @@ JOKE = "I told my manager I'm drowning in emails, so he CC'd me on a meeting abo
 OUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
 
-def check_gate(text):
+def validate(text):
     """Mirror the competition gate: UTF-8 text, 1-200 characters,
     not only whitespace, exactly one line."""
     if not isinstance(text, str):
@@ -25,6 +25,10 @@ def check_gate(text):
         raise ValueError("entry must be a single line")
     text.encode("utf-8")  # raises if not valid UTF-8
     return text
+
+
+def check_gate(text):
+    return validate(text)
 
 
 def main():
